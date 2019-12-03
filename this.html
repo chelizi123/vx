@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  
+
+  <script>
+    
+    //箭头函数的this和传统函数的this
+    //箭头函数的this: 函数在定义this已经确定指向
+    //传统函数的this: 函数在调用时，this才会执行(谁调用，函数内部的this就会指向于谁)
+    var xiaoming = {
+      name: '小明',
+      food: '小乳猪',
+      cooking: function () {
+        console.log(this.name + '会做' + this.food);
+
+        function g() {
+          console.log('this ==> ', this);
+        }
+
+        g();
+
+      },
+
+      getFood: function () {
+        //函数1
+
+        console.log('this.food ==> ', this.food);
+
+        var f = () => {
+          //函数2
+          //函数2是在函数1环境定义的
+          //由于函数2是箭头函数，所以函数2内部的this在函数定义的时候已经发生指向，换句话说，箭头函数在哪个执行环境里面的定义的，箭头函数的this就会指向它所定义的执行环境(也就是this)
+          console.log('this ==> ', this);
+        }
+
+        f();
+
+      }
+
+    };
+
+    // xiaoming.cooking();
+
+    xiaoming.getFood();
+    
+  </script>
+</body>
+</html>
